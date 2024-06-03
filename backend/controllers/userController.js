@@ -1,13 +1,13 @@
-import { validationResult } from 'express-validator/check';
+import { validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import gravatar from 'gravatar';
 
 import User from '../models/userModel.js';
 
-export const registerUer = async (req, res) => {
+export const registerUser = async (req, res) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
+  if (errors.isEmpty()) {
     return res.status(400).json({
       errors: errors.array(),
     });
@@ -23,7 +23,7 @@ export const registerUer = async (req, res) => {
     }
 
     // Get gravatar
-    const avatar = gravatar.email(email, {
+    const avatar = gravatar.url(email, {
       s: '200',
       r: 'pg',
       d: 'mm',
@@ -37,8 +37,8 @@ export const registerUer = async (req, res) => {
     });
 
     // encrypt password
-    const salt = bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(password, salt);
+
+    user.password = await bcrypt.hash(password, 10);
     await user.save();
 
     // Set JWT payload
@@ -60,7 +60,7 @@ export const registerUer = async (req, res) => {
       },
     );
 
-    res.send('User registered');
+    res.json({ user });
   } catch (error) {
     console.log(error);
     res.status(500).send('Server error');
