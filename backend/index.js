@@ -7,6 +7,16 @@ const app = express();
 
 app.use(express.json());
 
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, () => {
+      console.log('Database connected successfull!');
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
