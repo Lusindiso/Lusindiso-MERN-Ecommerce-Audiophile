@@ -12,7 +12,7 @@ export const registerUser = async (req, res) => {
       errors: errors.array(),
     });
   }
-  const { name, email, password } = req.body;
+  const { name, email, password, isAdmin } = req.body;
   // see if user exists
   try {
     let user = await User.findOne({ email });
@@ -34,6 +34,7 @@ export const registerUser = async (req, res) => {
       email,
       avatar,
       password,
+      isAdmin,
     });
 
     // encrypt password
@@ -45,6 +46,7 @@ export const registerUser = async (req, res) => {
     const payload = {
       user: {
         id: user.id,
+        isAdmin: user.isAdmin,
       },
     };
 
@@ -86,5 +88,26 @@ export const updateUser = async (req, res) => {
     res.status(200).json(updatedUser);
   } catch (error) {
     res.status(500).send('server error');
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.status(200).send('User has been deleted');
+  } catch (error) {
+    res.status(500).send('server error');
+  }
+};
+
+export const getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select(
+      '-password',
+    );
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
   }
 };

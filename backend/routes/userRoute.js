@@ -1,10 +1,13 @@
 import express from 'express';
 import { body } from 'express-validator';
 import {
+  deleteUser,
+  getUser,
   registerUser,
   updateUser,
 } from '../controllers/userController.js';
 import {
+  verifyAdmin,
   verifyToken,
   verifyUser,
 } from '../middleware/verifyUser.js';
@@ -24,5 +27,9 @@ router.post(
 );
 
 router.put('/:id', verifyUser, updateUser);
+
+router.delete('/:id', verifyUser, deleteUser);
+
+router.get('/find/:id', verifyAdmin, getUser);
 
 export default router;

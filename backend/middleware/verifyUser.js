@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import User from '../models/userModel.js';
 
 export const verifyToken = (req, res, next) => {
   const token = req.header('x-auth-token');
@@ -13,7 +14,6 @@ export const verifyToken = (req, res, next) => {
   // verify token
   try {
     const decoded = jwt.verify(token, process.env.JWT_SEC);
-
     req.user = decoded.user;
     next();
   } catch (error) {
@@ -22,11 +22,27 @@ export const verifyToken = (req, res, next) => {
 };
 
 export const verifyUser = (req, res, next) => {
-  verifyToken(req, res, () => {
-    if (req.user.id === req.params.id || req.user.isAdmin) {
+  verifyToken(req, res, async () => {
+    const user = await User.findById(req.user.id).select(
+      '-password',
+    );
+    if (user.id === req.params.id || user.isAdmin) {
       next();
     } else {
-      res.status(403).json('Not authorized');
+      res.status(403).send('Not authorized');
+    }
+  });
+};
+
+export const verifyAdmin = (req, res, next) => {
+  verifyToken(req, res, async () => {
+    const user = await User.findById(req.user.id).select(
+      '-password',
+    );
+    if (user.isAdmin) {
+      next();
+    } else {
+      res.status(403).send('Not authorized');
     }
   });
 };
