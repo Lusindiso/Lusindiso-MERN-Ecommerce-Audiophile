@@ -2,6 +2,7 @@ import express from 'express';
 import { body } from 'express-validator';
 import {
   deleteUser,
+  getAllUsers,
   getUser,
   registerUser,
   updateUser,
@@ -30,6 +31,8 @@ router.put('/:id', verifyUser, updateUser);
 
 router.delete('/:id', verifyUser, deleteUser);
 
-router.get('/find/:id', verifyAdmin, getUser);
+router.get('/:id', verifyAdmin, getUser);
+
+router.get('/', verifyAdmin, getAllUsers);
 
 export default router;
