@@ -1,6 +1,6 @@
 import express from 'express';
 import { body } from 'express-validator';
-import verifyUser from '../middleware/verifyUser.js';
+import { verifyToken } from '../middleware/verifyUser.js';
 
 import {
   getUser,
@@ -8,7 +8,7 @@ import {
 } from '../controllers/authController.js';
 const router = express.Router();
 
-router.get('/', verifyUser, getUser);
+router.get('/', verifyToken, getUser);
 
 router.post(
   '/login',

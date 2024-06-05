@@ -7,7 +7,7 @@ import User from '../models/userModel.js';
 
 export const registerUser = async (req, res) => {
   const errors = validationResult(req);
-  if (errors.isEmpty()) {
+  if (!errors.isEmpty()) {
     return res.status(400).json({
       errors: errors.array(),
     });
@@ -64,5 +64,27 @@ export const registerUser = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send('Server error');
+  }
+};
+
+export const updateUser = async (req, res) => {
+  if (req.body.password) {
+    req.body.password = await bcrypt.hash(
+      req.body.password,
+      10,
+    );
+  }
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true },
+    );
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    res.status(500).send('server error');
   }
 };

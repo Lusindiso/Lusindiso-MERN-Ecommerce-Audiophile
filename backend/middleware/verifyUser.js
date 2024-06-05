@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const verifyUser = (req, res, next) => {
+export const verifyToken = (req, res, next) => {
   const token = req.header('x-auth-token');
 
   // check token
@@ -21,4 +21,12 @@ const verifyUser = (req, res, next) => {
   }
 };
 
-export default verifyUser;
+export const verifyUser = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (req.user.id === req.params.id || req.user.isAdmin) {
+      next();
+    } else {
+      res.status(403).json('Not authorized');
+    }
+  });
+};
