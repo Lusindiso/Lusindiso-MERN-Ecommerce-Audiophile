@@ -1,5 +1,13 @@
+import Categories from '../UI/Categories/Categories';
+import CategoryHeader from '../components/CategoryHeader/CategoryHeader';
+
 const Earphones = () => {
-  return <div>Earphones</div>;
+  return (
+    <>
+      <CategoryHeader header='Earphones' />
+      <Categories />
+    </>
+  );
 };
 
 export default Earphones;

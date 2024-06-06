@@ -5,6 +5,7 @@ import Headphones from './pages/Headphones';
 import Earphones from './pages/Earphones';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import About from './UI/About/About';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Earphones />
         </Route>
       </Switch>
+      <About />
       <Footer />
     </>
   );
