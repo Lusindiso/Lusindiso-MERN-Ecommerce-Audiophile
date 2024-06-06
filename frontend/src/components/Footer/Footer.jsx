@@ -32,6 +32,7 @@ const Footer = () => {
         <p className='copy-right'>
           Copyright 2021. All Rights Reserved
         </p>
+        <div className='social-bottom'>social</div>
       </div>
     </footer>
   );

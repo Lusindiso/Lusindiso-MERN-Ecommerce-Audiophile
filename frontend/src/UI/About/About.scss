@@ -1,0 +1,58 @@
+.about {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 2rem;
+  margin: 10rem auto;
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: 1fr;
+    grid-auto-rows: repeat(2, 1fr);
+    text-align: center;
+  }
+
+  &--text {
+    max-width: 80%;
+    @media screen and (max-width: 767px) {
+      max-width: 100%;
+      margin: 5rem auto 10rem 0;
+    }
+
+    h2 {
+      font-size: 3.8rem;
+      font-weight: lighter;
+      margin-bottom: 3rem;
+
+      & > span {
+        color: rgb(216, 125, 74);
+      }
+    }
+
+    p {
+      font-size: 1.5rem;
+      line-height: 2.5rem;
+      font-weight: 500;
+      opacity: 0.5;
+    }
+  }
+
+  &--image {
+    flex: 1 1;
+    height: 60vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    @media screen and (max-width: 767px) {
+      height: auto;
+      grid-row: 1;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  }
+}

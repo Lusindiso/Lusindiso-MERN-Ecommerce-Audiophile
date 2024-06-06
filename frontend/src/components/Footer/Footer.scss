@@ -1,5 +1,4 @@
 .footer {
-  height: 37rem;
   background-color: black;
   color: white;
   font-size: 1.6rem;
@@ -9,10 +8,18 @@
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 3rem;
-
+    @media screen and (max-width: 767px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
     &__logo {
       border-top: 5px rgb(216, 125, 74) solid;
       padding-top: 6rem;
+      img {
+        width: 20rem;
+      }
 
       &:hover {
         opacity: 0.7;
@@ -21,13 +28,32 @@
 
     &__navbar {
       margin-bottom: 0.8rem;
+
+      .nav {
+        @media screen and (max-width: 767px) {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2rem;
+          margin-top: 5rem;
+          padding-right: 3rem;
+
+          a {
+            font-size: 2rem;
+          }
+        }
+      }
     }
   }
 
   &-about {
     max-width: 56rem;
-    margin-left: 0;
+
     text-align: left;
+    @media screen and (max-width: 767px) {
+      text-align: center;
+      margin: 2rem auto;
+    }
   }
 
   &--bottom {
@@ -35,5 +61,27 @@
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 5rem;
+    @media screen and (max-width: 767px) {
+      .social {
+        display: none;
+      }
+    }
+  }
+}
+.copy-right {
+  @media screen and (max-width: 767px) {
+    text-align: center;
+    padding-bottom: 5rem;
+  }
+}
+
+.social-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 5rem;
+  @media screen and (min-width: 767px) {
+    display: none;
   }
 }
