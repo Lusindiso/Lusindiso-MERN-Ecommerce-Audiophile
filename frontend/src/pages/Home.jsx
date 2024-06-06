@@ -1,4 +1,5 @@
 import Hero from '../UI/Hero/Hero';
+import Highlight from '../UI/Highlight/Highlight';
 import Categories from '../UI/Categories/Categories';
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <Hero />
       <Categories />
+      <Highlight />
     </>
   );
 };
