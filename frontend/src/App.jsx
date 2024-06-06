@@ -4,6 +4,7 @@ import Speakers from './pages/Speakers';
 import Headphones from './pages/Headphones';
 import Earphones from './pages/Earphones';
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Earphones />
         </Route>
       </Switch>
+      <Footer />
     </>
   );
 };

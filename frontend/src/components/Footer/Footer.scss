@@ -1,0 +1,39 @@
+.footer {
+  height: 37rem;
+  background-color: black;
+  color: white;
+  font-size: 1.6rem;
+
+  &--header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+
+    &__logo {
+      border-top: 5px rgb(216, 125, 74) solid;
+      padding-top: 6rem;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    &__navbar {
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  &-about {
+    max-width: 56rem;
+    margin-left: 0;
+    text-align: left;
+  }
+
+  &--bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 5rem;
+  }
+}
