@@ -1,0 +1,14 @@
+.navbar {
+  background-color: black;
+  color: white;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
+    padding: 3rem 0;
+  }
+  img:hover {
+    opacity: 0.7;
+  }
+}
